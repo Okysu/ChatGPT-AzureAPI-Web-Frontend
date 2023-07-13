@@ -1,0 +1,44 @@
+/**
+ * src/styles/settings.scss
+ *
+ * Configures SASS variables and Vuetify overwrites
+ */
+
+// https://vuetifyjs.com/features/sass-variables/`
+// @use 'vuetify/settings' with (
+//   $color-pack: false
+// );
+html {
+  overflow: auto;
+}
+
+.message-content ul,
+.message-content ol {
+  margin: 5px 20px;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// code tag but don't apply to pre tag
+:not(pre) > code {
+  border-radius: 3px;
+  border: 1px solid #e1e1e1;
+  padding: 0 5px;
+}
+
+code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: "Courier New", Courier, monospace;
+  border-radius: 10px;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  border-radius: 10px;
+}
