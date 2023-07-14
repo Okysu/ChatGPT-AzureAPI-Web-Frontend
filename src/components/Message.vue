@@ -4,9 +4,7 @@
       <!-- message list -->
       <v-list>
         <v-list-item
-          v-for="(item, i) in chats[now].messages.filter(
-            (item) => item.choose_flag
-          )"
+          v-for="item in chats[now].messages.filter((item) => item.choose_flag)"
           :key="item._id"
         >
           <div>
@@ -40,7 +38,7 @@
                 v-if="item.role === 'user' && !chats[now].options.single"
                 size="x-small"
                 variant="text"
-                @click="freshMessage(i)"
+                @click="freshMessage(item._id)"
               >
                 <v-icon>mdi-refresh</v-icon>
                 Refresh
@@ -123,8 +121,9 @@ const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
 
 // fresh message
-const freshMessage = (index: number) => {
+const freshMessage = (_id: string) => {
   const chatNow = chats.value[now.value];
+  const index = chatNow.messages.findIndex((item) => item._id === _id);
   let nextMessage = chatNow.messages[index + 1];
   let messages = chatNow.messages
     .slice(0, index + 1)
