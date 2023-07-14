@@ -151,7 +151,7 @@ const freshMessage = (_id: string) => {
           const newMessage: message = {
             _id: id,
             content: "Ai is thinking...",
-            created_at: new Date().toLocaleDateString(),
+            created_at: new Date().toLocaleString(),
             choose_flag: true,
             role: "assistant",
           };
@@ -175,7 +175,7 @@ const freshMessage = (_id: string) => {
             async function readStream(): Promise<any> {
               const { done, value } = await reader.read();
               if (done) {
-                nextMessage.updated_at = new Date().toLocaleDateString();
+                nextMessage.updated_at = new Date().toLocaleString();
                 return result;
               }
               const chunk = decoder.decode(value, { stream: true });

@@ -63,7 +63,7 @@ const sendMessage = () => {
   const newMessage: message = {
     _id: uuidv4(),
     content: value.value,
-    created_at: new Date().toLocaleDateString(),
+    created_at: new Date().toLocaleString(),
     choose_flag: true,
     role: "user",
   };
@@ -98,7 +98,7 @@ const sendMessage = () => {
         const aiNewMessage: message = {
           _id: id,
           content: "AI is thinking...",
-          created_at: new Date().toLocaleDateString(),
+          created_at: new Date().toLocaleString(),
           choose_flag: true,
           role: "assistant",
         };
@@ -121,7 +121,7 @@ const sendMessage = () => {
               const { done, value } = await reader.read();
               if (done) {
                 using.value = false;
-                messageNow.created_at = new Date().toLocaleDateString();
+                messageNow.created_at = new Date().toLocaleString();
                 if (
                   chatNow.messages.filter((item) => item.role === "assistant")
                     .length === 1 &&
@@ -169,7 +169,7 @@ const sendMessage = () => {
             chatNow.messages[point] = {
               _id: uuidv4(),
               content: JSON.stringify(result),
-              created_at: new Date().toLocaleDateString(),
+              created_at: new Date().toLocaleString(),
               choose_flag: true,
               role: "application",
             };
@@ -181,7 +181,7 @@ const sendMessage = () => {
       chatNow.messages.push({
         _id: uuidv4(),
         content: JSON.stringify(result),
-        created_at: new Date().toLocaleDateString(),
+        created_at: new Date().toLocaleString(),
         choose_flag: true,
         role: "application",
       });
