@@ -20,7 +20,10 @@
             >
           </div>
           <v-card variant="tonal" class="message-content">
-            <div :id="item._id" v-html="markdownToHtml(item.content)"></div>
+            <div :id="item._id" hidden>
+              {{ item.content }}
+            </div>
+            <div v-html="markdownToHtml(item.content)"></div>
           </v-card>
           <div class="message-actions">
             <div>
