@@ -210,7 +210,6 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const model = ref(props.modelValue);
     const chatStore = useChatStore();
     const userStore = useUserStore();
     const appStore = useAppStore();
@@ -253,7 +252,6 @@ export default defineComponent({
       }
     };
     return {
-      model,
       rules,
       select,
       user,

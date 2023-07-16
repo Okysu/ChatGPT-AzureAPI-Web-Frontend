@@ -3,6 +3,12 @@
     <v-responsive class="message-list">
       <!-- message list -->
       <v-list>
+        <div class="message-divider">
+          <v-btn size="small" variant="text" @click="premade.open()">
+            <v-icon>mdi-plus</v-icon>
+            New message
+          </v-btn>
+        </div>
         <v-list-item
           v-for="item in chats[now].messages.filter((item) => item.choose_flag)"
           :key="item._id"
@@ -58,10 +64,17 @@
               - Edited at {{ new Date(item.updated_at).toLocaleString() }}</span
             >
           </div>
+          <div class="message-divider">
+            <v-btn size="small" variant="text" @click="premade.open(item._id)">
+              <v-icon>mdi-plus</v-icon>
+              New message
+            </v-btn>
+          </div>
         </v-list-item>
       </v-list>
     </v-responsive>
   </v-container>
+  <premade-component ref="premade" />
 </template>
 
 <style lang="scss" scoped>
@@ -101,9 +114,26 @@
 .message-list::-webkit-scrollbar-thumb:hover {
   background: #a6a6a6;
 }
+
+.message-divider {
+  text-align: center;
+  color: #bfbfbf;
+}
+
+.message-divider::before,
+.message-divider::after {
+  content: "";
+  display: inline-block;
+  width: calc(50% - 100px);
+  height: 1px;
+  background: #bfbfbf;
+  vertical-align: middle;
+  margin: 0 10px;
+}
 </style>
 
 <script lang="ts" setup>
+import PremadeComponent from "./Premade.vue";
 import { useChatStore } from "@/store/chat";
 import { useUserStore } from "@/store/user";
 import { storeToRefs } from "pinia";
@@ -111,6 +141,7 @@ import { storeToRefs } from "pinia";
 import { markdownToHtml, copyText } from "@/utils/markdown";
 import { requestAI } from "@/api/model";
 import { useFetch } from "@/api";
+import { ref } from "vue";
 // chat store
 const chatStore = useChatStore();
 // chat that checked
@@ -150,7 +181,7 @@ const freshMessage = (_id: string) => {
           // add new message
           const newMessage: message = {
             _id: id,
-            content: "Ai is thinking...",
+            content: "AI is thinking...",
             created_at: new Date().toLocaleString(),
             choose_flag: true,
             role: "assistant",
@@ -160,7 +191,7 @@ const freshMessage = (_id: string) => {
           nextMessage = chatNow.messages[index + 1];
         }
         nextMessage._id = id;
-        nextMessage.content = "Ai is thinking...";
+        nextMessage.content = "AI is thinking...";
         useFetch(`/model/stream/${id}`)
           .then((res) => {
             if (!res.body) {
@@ -199,4 +230,7 @@ const freshMessage = (_id: string) => {
       nextMessage.role = "application";
     });
 };
+
+// premade
+const premade = ref();
 </script>
