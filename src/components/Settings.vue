@@ -202,10 +202,8 @@ export default defineComponent({
     optionsNow() {
       if (this.global) {
         return this.options;
-      } else if (this.now !== -1) {
-        return this.chats[this.now].options;
       } else {
-        return this.options;
+        return this.chats[this.now].options;
       }
     },
   },
