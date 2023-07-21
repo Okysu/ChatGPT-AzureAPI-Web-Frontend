@@ -14,13 +14,16 @@
       variant="solo-filled"
       @keydown="quickSend"
     >
-      <template #append-inner>
-        <v-btn :loading="using" color="primary" @click="sendMessage">
-          <v-icon> mdi-send </v-icon>
-          Send
-        </v-btn>
-      </template>
     </v-textarea>
+    <v-btn
+      :loading="using"
+      color="primary"
+      @click="sendMessage"
+      class="fab-send"
+    >
+      <v-icon> mdi-send </v-icon>
+      Send
+    </v-btn>
   </div>
 </template>
 
@@ -32,6 +35,12 @@
   bottom: 0;
   left: 0;
   z-index: 999;
+}
+
+.fab-send {
+  position: absolute;
+  right: 32px;
+  bottom: 32px;
 }
 </style>
 
