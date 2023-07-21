@@ -15,7 +15,6 @@ import StartComponent from "@/components/Start.vue";
 import { useChatStore } from "@/store/chat";
 import { useUserStore } from "@/store/user";
 import { storeToRefs } from "pinia";
-import { onMounted } from "vue";
 // chat store
 const chatStore = useChatStore();
 // chat

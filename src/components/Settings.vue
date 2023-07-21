@@ -185,6 +185,7 @@ import { defineComponent, ref } from "vue";
 import { getModels } from "@/api/app";
 // markdown
 import { markdownToHtml, copyText } from "@/utils/markdown";
+import { thisExpression } from "@babel/types";
 export default defineComponent({
   name: "Settings",
   props: {
@@ -200,7 +201,7 @@ export default defineComponent({
   emits: ["update:modelValue"],
   computed: {
     optionsNow() {
-      if (this.global) {
+      if (this.global || this.now == -1) {
         return this.options;
       } else {
         return this.chats[this.now].options;
