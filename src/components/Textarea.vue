@@ -1,42 +1,45 @@
 <template>
-  <!-- textarea -->
-  <div class="message-input">
-    <v-textarea
-      v-model="value"
-      :placeholder="
-        using
-          ? 'AI is thinking, but you can still type...'
-          : 'Type something...'
-      "
-      outlined
-      auto-grow
-      rows="1"
-      variant="solo-filled"
-      @keydown="quickSend"
-    >
-    </v-textarea>
-    <v-btn
-      :loading="using"
-      color="primary"
-      @click="sendMessage"
-      class="fab-send"
-    >
-      <v-icon> mdi-send </v-icon>
-      Send
-    </v-btn>
+  <div class="input">
+    <!-- textarea -->
+    <div class="message-input">
+      <v-textarea
+        v-model="value"
+        :placeholder="
+          using
+            ? 'AI is thinking, but you can still type...'
+            : 'Type something...'
+        "
+        outlined
+        auto-grow
+        rows="1"
+        variant="solo-filled"
+        @keydown="quickSend"
+      >
+      </v-textarea>
+      <v-btn
+        :loading="using"
+        color="primary"
+        @click="sendMessage"
+        class="fab-send"
+      >
+        <v-icon> mdi-send </v-icon>
+        Send
+      </v-btn>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .message-input {
-  padding: 0 16px;
-  width: 100%;
   position: fixed;
+  padding: 0 16px;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 999;
+  width: 100%;
+  max-width: 1200px;
 }
-
 .fab-send {
   position: absolute;
   right: 32px;

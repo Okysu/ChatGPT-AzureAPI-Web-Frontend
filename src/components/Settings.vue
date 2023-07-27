@@ -185,7 +185,6 @@ import { defineComponent, ref } from "vue";
 import { getModels } from "@/api/app";
 // markdown
 import { markdownToHtml, copyText } from "@/utils/markdown";
-import { thisExpression } from "@babel/types";
 export default defineComponent({
   name: "Settings",
   props: {

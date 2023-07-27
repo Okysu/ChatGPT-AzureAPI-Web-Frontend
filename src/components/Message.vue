@@ -94,6 +94,8 @@
   padding: 0 4px;
   max-height: calc(100vh - 180px);
   overflow-y: auto;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 // beautify scrollbar
