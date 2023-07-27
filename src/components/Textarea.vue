@@ -93,11 +93,13 @@ const sendMessage = () => {
       };
     });
   // if signle mode, only send the last two messages(don't include system message)
-  if (chatNow.options.single) {
+  if (chatNow.options.single && messages.length > 1) {
     let filteredMessages: Array<{ role: string; content: string }> = [];
     filteredMessages = messages.filter((item) => item.role === "system");
-    filteredMessages.push(messages[messages.length - 2]);
-    filteredMessages.push(messages[messages.length - 1]);
+    filteredMessages.push({
+      role: newMessage.role,
+      content: newMessage.content,
+    });
     messages = filteredMessages;
   }
   requestAI(messages, chatNow.options)

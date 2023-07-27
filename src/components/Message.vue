@@ -41,7 +41,7 @@
                 Copy
               </v-btn>
               <v-btn
-                v-if="item.role === 'user' && !chats[now].options.single"
+                v-if="item.role === 'user'"
                 size="x-small"
                 variant="text"
                 @click="freshMessage(item._id)"
@@ -167,6 +167,13 @@ const freshMessage = (_id: string) => {
         role: item.role,
       };
     });
+  if (chatNow.options.single) {
+    messages = messages.filter((item) => item.role === "system");
+    messages.push({
+      content: chatNow.messages[index].content,
+      role: chatNow.messages[index].role,
+    });
+  }
   requestAI(messages, chatNow.options)
     .then((res) => {
       const result = res.data;
